@@ -29,6 +29,7 @@ from typing import Any, List
 import datetime as datetime
 import pandas as pd
 import hashlib
+import time
 
 ################################################################################
 # Step 1:
@@ -197,6 +198,12 @@ if st.button("Add Block"):
         creator_id=42,
         prev_hash=prev_block_hash
     )
+
+    hash_complete = st.progress(0)
+    for percent_complete in range(100):
+        time.sleep(0.1)
+        hash_complete.progress(percent_complete + 1)
+
 
     pychain.add_block(new_block)
     st.balloons()
