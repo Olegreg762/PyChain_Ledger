@@ -1,13 +1,17 @@
 # $$PyChain-Ledger$$
 
+In this repo I created a very simple blockchain web application [pychain.py](/pychain.py). This was done using the streamlit python library. <br>
+Streamlit is a libray used to create web applications with the user only needing python.<br>
+Using python and streamlit the simple blockchain application will allow you to create and store transaction data.<br>
+
+
 ## Genesis Block<br>
 ![alt](./images/genesis.png)
 
-In this repo I created a very simple blockchain web application [pychain file](/pychain.py). This was done using the streamlit pythin library. <br>
-Streamlit is a libray used to create web applications with the user only needing python.<br>
-Using python and streamlit the simple blockchain application will allow you to create and store transaction data.<br>
  <br>
+ 
  ## This is an image of the application hashing for the next block<br>
+
  ![alt](./images/running_block_3.png)<br>
 <br>
 
