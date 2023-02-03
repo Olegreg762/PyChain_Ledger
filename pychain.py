@@ -145,7 +145,20 @@ class PyChain:
 
 
 @st.cache(allow_output_mutation=True)
-def setup():
+def setup(self):
+    sha = hashlib.sha256()
+
+    data = str(self.data).encode()
+    sha.update(data)
+
+    creator_id = str(self.creator_id).encode()
+    sha.update(creator_id)
+
+    timestamp = str(self.timestamp).encode()
+    sha.update(timestamp)
+
+    prev_hash = str(self.prev_hash).encode()
+    sha.update(prev_hash)
     print("Initializing Chain")
     return PyChain([Block("Genesis", 0)])
 
