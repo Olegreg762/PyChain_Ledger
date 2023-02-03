@@ -54,7 +54,7 @@ import time
 class Record:
     sender: str
     reciever: str
-    amount: str
+    amount: float
 
 
 ################################################################################
