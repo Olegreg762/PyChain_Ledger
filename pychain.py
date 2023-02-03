@@ -77,8 +77,8 @@ class Block:
     record : Record
 
     creator_id: int
-    prev_hash: str = "0"
-    timestamp: str = datetime.datetime.utcnow().strftime("%H:%M:%S")
+    prev_hash: str = '0'
+    timestamp: str = datetime.datetime.utcnow().strftime('%H:%M:%S')
     nonce: int = 0
 
     def hash_block(self):
@@ -111,7 +111,7 @@ class PyChain:
 
         calculated_hash = block.hash_block()
 
-        num_of_zeros = "0" * self.difficulty
+        num_of_zeros = '0' * self.difficulty
 
         while not calculated_hash.startswith(num_of_zeros):
 
@@ -119,7 +119,7 @@ class PyChain:
 
             calculated_hash = block.hash_block()
 
-        print("Wining Hash", calculated_hash)
+        print('Winning Hash', calculated_hash)
         return block
 
     def add_block(self, candidate_block):
@@ -131,13 +131,13 @@ class PyChain:
 
         for block in self.chain[1:]:
             if block_hash != block.prev_hash:
-                print("Blockchain is invalid!")
-                return False
+                
+                return print('Blockchain is invalid!')
 
             block_hash = block.hash_block()
 
-        print("Blockchain is Valid")
-        return True
+        
+        return print('Blockchain is Valid')
 
 ################################################################################
 # Streamlit Code
@@ -147,12 +147,12 @@ class PyChain:
 
 @st.cache(allow_output_mutation=True)
 def setup():
-    print("Initializing Chain")
-    return PyChain([Block("Genesis", 0)])
+    print('Initializing Chain')
+    return PyChain([Block('Genesis', 0)])
 
 
-st.markdown("# PyChain")
-st.markdown("## Store a Transaction Record in the PyChain")
+st.markdown('# PyChain')
+st.markdown('## Store a Transaction Record in the PyChain')
 
 pychain = setup()
 
@@ -186,7 +186,7 @@ receiver = st.text_input('Receiver Name')
 # Add an input area where you can get a value for `amount` from the user.
 amount = st.text_input('Amount')
 
-if st.button("Add Block"):
+if st.button('Add Block'):
     prev_block = pychain.chain[-1]
     prev_block_hash = prev_block.hash_block()
 
@@ -206,31 +206,33 @@ if st.button("Add Block"):
         time.sleep(0.1)
         hash_complete.progress(percent_complete + 1)
 
-
     pychain.add_block(new_block)
     st.balloons()
-
+    
 ################################################################################
 # Streamlit Code (continues)
 
-st.markdown("## The PyChain Ledger")
+st.markdown('## The PyChain Ledger')
 
 pychain_df = pd.DataFrame(pychain.chain).astype(str)
 st.write(pychain_df)
 
-difficulty = st.sidebar.slider("Block Difficulty", 1, 5, 2)
+difficulty = st.sidebar.slider('Block Difficulty', 1, 5, 2)
 pychain.difficulty = difficulty
 
-st.sidebar.write("# Block Inspector")
+st.sidebar.write('# Block Inspector')
 selected_block = st.sidebar.selectbox(
-    "Which block would you like to see?", 
+    'Which block would you like to see?', 
     pychain.chain
 )
 
 st.sidebar.write(selected_block)
 
-if st.button("Validate Chain"):
-    st.write(pychain.is_valid())
+if st.button('Validate Chain'):
+    if pychain.is_valid() == True:
+        st.write('Blockchain is Valid!')
+    else:
+        st.write('Blockchain is invalid!')
 
 ################################################################################
 # Step 4:
@@ -247,8 +249,8 @@ if st.button("Validate Chain"):
 # 2. In the terminal, run the Streamlit application by
 # using `streamlit run pychain.py`.
 
-# 3. Enter values for the sender, receiver, and amount, and then click the "Add
-# Block" button. Do this several times to store several blocks in the ledger.
+# 3. Enter values for the sender, receiver, and amount, and then click the 'Add
+# Block' button. Do this several times to store several blocks in the ledger.
 
 # 4. Verify the block contents and hashes in the Streamlit drop-down menu.
 # Take a screenshot of the Streamlit application page, which should detail a
