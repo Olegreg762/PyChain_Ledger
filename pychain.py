@@ -30,6 +30,7 @@ import datetime as datetime
 import pandas as pd
 import hashlib
 import time
+import random
 
 ################################################################################
 # Step 1:
@@ -195,7 +196,8 @@ if st.button("Add Block"):
     # and `amount` values
     new_block = Block(
         record=Record(sender=sender,reciever=receiver,amount=amount),
-        creator_id=42,
+        # Random int method to change creator_id after every block 
+        creator_id=(random.randint(1,1000)),
         prev_hash=prev_block_hash
     )
 
