@@ -132,12 +132,12 @@ class PyChain:
         for block in self.chain[1:]:
             if block_hash != block.prev_hash:
                 
-                return print('Blockchain is invalid!')
+                return st.write('Blockchain is invalid!')
 
             block_hash = block.hash_block()
 
         
-        return print('Blockchain is Valid')
+        return st.write('Blockchain is Valid')
 
 ################################################################################
 # Streamlit Code
@@ -229,10 +229,7 @@ selected_block = st.sidebar.selectbox(
 st.sidebar.write(selected_block)
 
 if st.button('Validate Chain'):
-    if pychain.is_valid() == True:
-        st.write('Blockchain is Valid!')
-    else:
-        st.write('Blockchain is invalid!')
+    st.write(pychain.is_valid())
 
 ################################################################################
 # Step 4:
